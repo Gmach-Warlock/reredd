@@ -14,16 +14,20 @@ export default function Post(props: any) {
 
     const handleClick = () => {
 
-        if (post.commentsArray.length !== -1) {
+        dispatch(toggleCommentsContainer({id: post.id}));
+
+        if (post.commentsArray.length === 0) {
 
             dispatch(fetchComments({
                 fetchUrl: `${reddit_url}/r/${post.subreddit}/comments.json`, 
                 newName: post.subreddit
             }))
 
-            dispatch(toggleCommentsContainer({id: post.id}));
+
 
         }
+
+       
 
     }
 
