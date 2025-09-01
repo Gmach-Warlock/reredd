@@ -4,21 +4,29 @@ import { fetchSubreddits } from "./fetchSubreddits";
 
 export interface SubredditsType {
     fetchOptions: FetchType;
-    newName: string;
+    currentArrayName: string;
     currentArray: Array<object>;
+    subredditsMenuIsVisible: boolean;
 };
 
 const initialSubredditsState: SubredditsType = {
     fetchOptions: fetchObject,
-    newName: '',
+    currentArrayName: '',
     currentArray: [],
+    subredditsMenuIsVisible: false,
 };
 
 const subredditsSlice = createSlice({
     name: 'subreddits',
     initialState: initialSubredditsState,
     reducers: {
-
+        toggleSubredditsMenu: (state) => {
+            state.subredditsMenuIsVisible
+                ?
+                    state.subredditsMenuIsVisible = false
+                :
+                    state.subredditsMenuIsVisible = true
+        }
     },
     extraReducers(builder) {
         builder
@@ -34,11 +42,12 @@ const subredditsSlice = createSlice({
                 state.fetchOptions.loading = 'succeeded';
                 state.fetchOptions.error = null;
                 state.currentArray = action.payload?.returnArray;
-                state.newName = action.payload?.newName;
+                state.currentArrayName = action.payload?.newName;
             })
     },
 });
 
+export const { toggleSubredditsMenu } = subredditsSlice.actions;
 export default subredditsSlice.reducer;
 
 

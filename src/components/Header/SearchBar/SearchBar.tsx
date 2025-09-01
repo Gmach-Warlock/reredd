@@ -8,6 +8,7 @@ export default function SearchBar() {
 
     const [searchTerms, setSearchTerms] = useState('');
 
+
     const dispatch = UseAppDispatch();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -17,7 +18,7 @@ export default function SearchBar() {
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        dispatch(fetchPosts({fetchUrl: reddit_url + `/r/popular.json`, newName: 'popular'}))
+        dispatch(fetchPosts({fetchUrl: reddit_url + `/search.json?q=${searchTerms}`, newName: 'search'}))
         
         console.log(searchTerms);
         console.log(store.getState())

@@ -5,12 +5,14 @@ import SubredditButton from "./SubredditButton/SubredditButton";
 import "./SubredditsContainer.css";
 import { fetchSubreddits } from "../../features/subreddits/fetchSubreddits";
 import { reddit_url } from "../../app/variables";
+import MenuFormSubreddits from "./MenuFormSubreddits/MenuFormSubreddits";
 
 export default function SubredditsContainer() {
 
     const currentArray = UseAppSelector(state => state.subreddits.currentArray);
     const dispatch = UseAppDispatch();
-
+    const subredditsMenuIsVisible = UseAppSelector(state => state.subreddits.subredditsMenuIsVisible);
+    
     
     useEffect(() => {
         dispatch(fetchSubreddits({fetchUrl: `${reddit_url}/subreddits/popular.json`, newName: 'popular'}))
@@ -32,12 +34,17 @@ export default function SubredditsContainer() {
 
             </div>
 
+            {subredditsMenuIsVisible && <div>
+                <MenuFormSubreddits />    
+            </div>}
+
             {currentArray.length !== 0
                 ?
                     <div className="container">
 
                         {currentArray.map((subreddit: any) => <SubredditButton 
                             subreddit={subreddit}
+                            key={subreddit.id}
                         />)}
 
                     </div>

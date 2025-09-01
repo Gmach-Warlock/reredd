@@ -1,8 +1,12 @@
+import { UseAppDispatch } from "../../../app/hooks"
+import { togglePostsMenu } from "../../../features/posts/postsSlice";
 
 export default function MenuButtonPosts() {
 
+    const dispatch = UseAppDispatch();
+
     const handleClick = () => {
-        
+        dispatch(togglePostsMenu());
     }
 
     return (

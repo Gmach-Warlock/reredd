@@ -1,14 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-export interface FetchArgsType {
-    fetchUrl: string;
-    newName: string;
-}
-
-export const fetchPosts = createAsyncThunk(
-    'posts/fetchPosts',
-    async (args: FetchArgsType, thunkAPI) => {
-
+export const fetchComments = createAsyncThunk(
+    'posts/fetchComments',
+    async (args: any, thunkAPI) => {
         const { fetchUrl, newName } = args;
 
         try {
@@ -18,30 +12,29 @@ export const fetchPosts = createAsyncThunk(
             });
 
             if (!response) {
-                thunkAPI.rejectWithValue(`failed to fetch from ${fetchUrl}`)
-            }
+                thunkAPI.rejectWithValue(`failed to fetch at ${fetchUrl}.`)
+            };
 
             const data = await response.json();
-
+            
             const preformattedItems = data.data.children.map((item: any) => {
                 return {
                     ...item
                 }
             });
-
             const formattedItems = preformattedItems.map((item: any) => {
                 return {
-                    ...item.data,
-                    commentsArray: [],
-                    commentsAreVisible: false,
+                    ...item.data
                 }
             });
-
             console.log(formattedItems);
             return {
                 returnArray: formattedItems,
                 arrayName: newName,
             };
+       
+
+
 
         } catch (error) {
             console.error(error);
