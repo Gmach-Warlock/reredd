@@ -1,0 +1,35 @@
+
+.theme-toggle {
+    display: none; /* Hide the default checkbox */
+  }
+
+.toggle-label {
+    position: relative;
+    display: inline-block;
+    width: 55px; /* Adjust as needed */
+    height: 30px; /* Adjust as needed */
+    background-color: hsla(240, 100%, 20%, 0.5); /* Light mode track color */
+    border-radius: 34px;
+    cursor: pointer;
+    transition: background-color 0.4s;
+}
+
+.ball {
+    position: absolute;
+    content: '';
+    height: 23px; /* Adjust as needed */
+    width: 23px; /* Adjust as needed */
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.4s;
+}
+
+.theme-toggle:checked + .toggle-label {
+    background-color: hsl(0, 0%, 80%); /* Dark mode track color */
+}
+
+.theme-toggle:checked + .toggle-label .ball {
+    transform: translateX(26px); /* Move the ball to the right */
+}

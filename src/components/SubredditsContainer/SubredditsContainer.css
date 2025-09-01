@@ -1,0 +1,9 @@
+.SubredditsContainer {
+    margin-right: 1rem;
+}
+
+.menu {
+    display: flex;
+    justify-content: space-between;
+    
+}
