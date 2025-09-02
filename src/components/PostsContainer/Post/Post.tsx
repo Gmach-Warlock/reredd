@@ -1,4 +1,4 @@
-import { getHoursSinceEpochTimestamp } from "../../../app/functions";
+import { getTimeSinceEpochTimestamp } from "../../../app/functions";
 import { UseAppDispatch } from "../../../app/hooks";
 import { reddit_url } from "../../../app/variables";
 import { fetchComments } from "../../../features/posts/fetchComments";
@@ -68,7 +68,7 @@ export default function Post(props: any) {
                     </div>
 
                     <div className="post-since-posted">
-                        <span>{getHoursSinceEpochTimestamp(post.created)}</span>
+                        <span>{getTimeSinceEpochTimestamp(post.created)}</span>
                     </div>
 
                     <div className="post-comments" onClick={handleClick}>

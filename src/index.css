@@ -92,6 +92,6 @@ body {
   .theme-dark .main-container,
   .theme-light .main-container {
     display: grid;
-    grid-template-columns: 8fr 2fr;
+    grid-template-columns: 7.5fr 2.5fr;
   }
 }

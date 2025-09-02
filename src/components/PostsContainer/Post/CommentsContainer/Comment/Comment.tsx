@@ -1,3 +1,4 @@
+import { getTimeSinceEpochTimestamp } from "../../../../../app/functions";
 import { UseAppSelector } from "../../../../../app/hooks";
 import "./Comment.css";
 
@@ -10,13 +11,13 @@ export default function Comment(props: any) {
     return (
         <div className={`Comment-${theme}`}>
 
-            <div className="flex between">
+            <div className="flex between px-1">
 
                 <div>
                     <h4>{comment.author}</h4>
                 </div>
                 <div>
-                    <span>How long ago?</span>
+                    <span>{getTimeSinceEpochTimestamp(comment.created)}</span>
                 </div>
 
             </div>
